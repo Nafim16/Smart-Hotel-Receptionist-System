@@ -5,9 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
-
 public class Login extends JFrame {
-	
 	
 	public Login(Connection c, Statement s) {
 		
@@ -47,12 +45,32 @@ public class Login extends JFrame {
 	    add(b1);
 	    b1.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-
-	    		new Room();
+	    		try {
+	    			String username = nameTxt.getText();
+	    			String password = passTxt.getText();
+	    			PreparedStatement ps = c.prepareStatement("Select username,pass from info where 'username'=? and 'password'=?");
+	    			ps.setString(1, username);
+	    			ps.setString(2, password);
+	    			ResultSet r;
+	    			r = ps.executeQuery();
+	    
+	    			if(r.next()) {
+	    				dispose();
+		    	    	new Room();
+	    			}
+	    			else {
+		    			JOptionPane.showMessageDialog(null, "Login Failed", "Please check user name or password",JOptionPane.WARNING_MESSAGE);
+		    		}	
+	    					
+	    		}catch(Exception x) {
+	    			
+	    		}
+	    		//dispose();
+    	    	//new Room();
 	    		
 	    	}
 	    });
-	        
+	    
 	    JButton b2 = new JButton("Create Account");
 	    b2.setBounds(180, 220, 130, 30);
 	    b2.setBackground(Color.black);
@@ -60,13 +78,12 @@ public class Login extends JFrame {
 	    add(b2);
 	    b2.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-
-	    		new Register(c,s);
-	    		
+	    		dispose();
+	    		new Register(c,s);   		
 	    	}
 	    });
 	    
-	    
+	    setTitle("Login");
 	    setSize(500, 360);
 	    setDefaultCloseOperation(3);
 	    setLayout(null);
@@ -74,8 +91,7 @@ public class Login extends JFrame {
 	    setResizable(false);
 	    setLocationRelativeTo(null);
 	    
-	}
-	
+	}	
 
 	public static void main(String[] args) throws Exception {
 		Class.forName("com.mysql.cj.jdbc.Driver");

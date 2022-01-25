@@ -100,19 +100,34 @@ public class Register extends JFrame {
 		    		
 		    		String q = "insert into info values('"+fullname+"', '"+username+"', '"+email+"', '"+pass+"', '"+phone+"', '"+add+"')";
 		    		s.executeUpdate(q);
-		    		s.close();
-		    		c.close();
+		    		//s.close();
+		    		//c.close();
 		    		
 	    		}catch(Exception x) {
 	    			
 	    		}
-	    		
-	    		
+	   		
+	    		dispose();
 	    		new Login(c,s);
- 
+
 	    	}
 	    });
-        
+	    
+	    JButton b2 = new JButton("Back");
+	    b2.setBounds(130, 310, 90, 30);
+	    b2.setBackground(Color.DARK_GRAY);
+        b2.setForeground(Color.white);
+	    add(b2);
+	    b2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new Login(c,s);
+				
+				
+			}
+	    	
+	    });
+        setTitle("Registration");
         setSize(500, 460);
         setDefaultCloseOperation(3);
         setLayout(null);
