@@ -96,8 +96,7 @@ public class RockPaperScissor extends JFrame {
 				dispose();
 				new AfterPayment(null,null);	
 			}
-		});
-		
+		});		
 		
 		
 		setTitle("Entertainment");
