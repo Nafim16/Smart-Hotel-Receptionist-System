@@ -48,11 +48,13 @@ public class Login extends JFrame {
 	    		try {
 	    			String username = nameTxt.getText();
 	    			String password = passTxt.getText();
-	    			PreparedStatement ps = c.prepareStatement("Select username,pass from info where 'username'=? and 'password'=?");
-	    			ps.setString(1, username);
-	    			ps.setString(2, password);
+	    			String q = "Select * from info where username=\""+username+"\" and pass=\""+password+"\";";
+	    			//PreparedStatement ps = c.prepareStatement(q);
+	    			//ps.setString(1, username);
+	    			//ps.setString(2, password);
+	    			
 	    			ResultSet r;
-	    			r = ps.executeQuery();
+	    			r = s.executeQuery(q);
 	    
 	    			if(r.next()) {
 	    				dispose();
@@ -60,10 +62,12 @@ public class Login extends JFrame {
 	    			}
 	    			else {
 		    			JOptionPane.showMessageDialog(null, "Login Failed", "Please check user name or password",JOptionPane.WARNING_MESSAGE);
-		    		}	
+		    		}
+	    			//s.close();
+	    			//c.close();
 	    					
 	    		}catch(Exception x) {
-	    			
+	    			//System.out.println("none");
 	    		}
 	    		//dispose();
     	    	//new Room();
@@ -92,7 +96,7 @@ public class Login extends JFrame {
 	    setLocationRelativeTo(null);
 	    
 	}	
-
+	
 	public static void main(String[] args) throws Exception {
 		Class.forName("com.mysql.cj.jdbc.Driver");
     	Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/userinfo", "root", null);

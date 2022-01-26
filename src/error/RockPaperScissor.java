@@ -21,13 +21,13 @@ public class RockPaperScissor extends JFrame {
 		ComputerScore = new JLabel();
 		ComputerScore.setText("Computer : 0");
 		ComputerScore.setBounds(460,15,100,100);
-		ComputerScore.setFont((new Font("Arial",Font.BOLD,16)));
+		ComputerScore.setFont((new Font("Arial",Font.BOLD,15)));
 		add(ComputerScore);
 		
 		UserScore = new JLabel();
 		UserScore.setText("User : 0");
 		UserScore.setBounds(460,30,100,100);
-		UserScore.setFont((new Font("Arial",Font.BOLD,16)));
+		UserScore.setFont((new Font("Arial",Font.BOLD,15)));
 		add(UserScore);
 				
 		JLabel cl = new JLabel("Computer");
@@ -85,8 +85,23 @@ public class RockPaperScissor extends JFrame {
 			}
 		});
 		
+		
+		JButton b4 = new JButton("Exit");
+		b4.setBounds(480,500,80,30);
+		b4.setBackground(Color.DARK_GRAY);
+        b4.setForeground(Color.white);
+		add(b4);
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new AfterPayment(null,null);	
+			}
+		});
+		
+		
+		
 		setTitle("Entertainment");
-		setSize(600, 510);
+		setSize(600, 600);
         setDefaultCloseOperation(3);
         setLayout(null);
         setVisible(true);
@@ -143,8 +158,7 @@ public class RockPaperScissor extends JFrame {
 		}
 		result.setText(res);
 		UserScore.setText("Player : "+userScore);
-		ComputerScore.setText("Computer : "+computerScore);
-			
+		ComputerScore.setText("Computer : "+computerScore);			
 	}
 	
 	int GRandom() {
@@ -154,7 +168,7 @@ public class RockPaperScissor extends JFrame {
 		return min + random.nextInt(max-min);		
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 		// TODO Auto-generated method stub
 	
 		new RockPaperScissor();
