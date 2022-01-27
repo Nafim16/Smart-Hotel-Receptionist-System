@@ -116,8 +116,7 @@ public class Payment extends JFrame{
 				totalt.setText(""+tot);
 								
 				tf.setText("Hello, "+name+"\nAmount Payable: "+tot+"\nPayment Method: "+x);
-				
-				
+	
 				
 			}
         	

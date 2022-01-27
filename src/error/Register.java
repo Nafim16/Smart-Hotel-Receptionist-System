@@ -106,7 +106,7 @@ public class Register extends JFrame {
 	    		}catch(Exception x) {
 	    			
 	    		}
-	   		
+	    		JOptionPane.showMessageDialog(null, "Registration Successful", "Please Press Ok to Login",JOptionPane.CLOSED_OPTION);
 	    		dispose();
 	    		new Login(c,s);
 
